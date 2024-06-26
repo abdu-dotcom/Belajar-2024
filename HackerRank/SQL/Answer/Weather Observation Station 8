@@ -1,0 +1,1 @@
+SELECT DISTINCT CITY FROM STATION WHERE Regexp_Like(CITY, '^(a|i|u|e|o)') AND  Regexp_Like(CITY, '(a|i|u|e|o)$')  ;
