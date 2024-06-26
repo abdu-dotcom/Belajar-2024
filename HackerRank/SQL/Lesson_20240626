@@ -1,6 +1,10 @@
 -- Weather Observation Station 7 : Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
 SELECT DISTINCT CITY FROM STATION WHERE Regexp_Like(CITY, '(a|i|u|e|o)$');
 -- Weather Observation Station 8
-SELECT DISTINCT CITY FROM STATION WHERE Regexp_Like(CITY, '^(a|i|u|e|o)') AND  Regexp_Like(CITY, '(a|i|u|e|o)$')  ;
+SELECT DISTINCT CITY FROM STATION WHERE Regexp_Like(CITY, '^(a|i|u|e|o)') AND  Regexp_Like(CITY, '(a|i|u|e|o)$');
 -- Weather Observation Station 9 : Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates.
-SELECT DISTINCT CITY FROM STATION WHERE NOT Regexp_Like(CITY, '^(a|i|u|e|o)')  ;
+SELECT DISTINCT CITY FROM STATION WHERE NOT Regexp_Like(CITY, '^(a|i|u|e|o)');
+-- Weather Observation Station 10 : Query the list of CITY names from STATION that do not end with vowels. Your result cannot contain duplicates.
+SELECT DISTINCT CITY FROM STATION WHERE NOT Regexp_Like(CITY, '(a|i|u|e|o)$');
+--  Weather Observation Station 11 : Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. Your result cannot contain duplicates.
+SELECT DISTINCT CITY FROM STATION WHERE NOT Regexp_Like(CITY, '^(a|i|u|e|o)') OR NOT  Regexp_Like(CITY, '(a|i|u|e|o)$');
