@@ -1,4 +1,4 @@
-package breakingRecords;
+package BreakingRecords;
 
 import java.io.*;
 import java.util.*;
