@@ -1,5 +1,3 @@
-package DayOfProgrammer;
-
 import java.io.*;
 import java.math.*;
 import java.security.*;
@@ -23,19 +21,23 @@ class Result {
 
     public static String dayOfProgrammer(int year) {
         // Write your code here
+        if(year >= 1700 && year <= 2700){
 
-        String result = null;
+            if( year <= 1917){  //jullian Calendar
 
-        if(year == 1918){
-            result = "26.09.1918";
-        }else {
-            if((year < 1918 && year % 4 == 0) ||
-                    (year % 4 == 0 && year % 100 != 0) || year % 400 == 0){
-                result =  "12.09." + year;
+                return year % 4 == 0 ? "12.09." + year : "13.09." + year;
+
+            }else if(year >= 1919){           //Gregorian Calendar
+
+                return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0 ?
+                        "12.09." + year : "13.09." + year;
+
+            }else{        //1918-transition between the two calendars
+
+                return "26.09." + year;
             }
-            result = "13.09." + year;
         }
-        return result;
+        return "";
     }
 
 }
@@ -56,4 +58,3 @@ public class Solution {
         bufferedWriter.close();
     }
 }
-
