@@ -36,6 +36,7 @@ class Result {
             Boolean positiveStep = false;
 
             if (counthStep > 0) positiveStep = true;
+            
             if (step == 'U') counthStep = counthStep + 1;
             if (step == 'D')  counthStep = counthStep - 1;
 
