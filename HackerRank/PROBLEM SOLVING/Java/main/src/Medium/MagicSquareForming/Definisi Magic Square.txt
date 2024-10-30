@@ -1,0 +1,13 @@
+magic squere adalah matemaatika rekreasi dan 
+desain kombinatorial adalah n x n kotak persegi
+(n adalah jumlah kotak di setiap sisi) yang
+diisi dengan bilangan asli positif mulai 
+dari 1-9, sampai semua kotak terisi dengan 
+bilangan asli positif yang berbeda, kemudian
+bilangan asli positif di setiap baris, kolom 
+dan diagonal jika dijumlah kan menghasilkan
+angka yang sama (15). Jumlahnya disebut 
+konstanta ajaib atau jumlah ajaib dari 
+persegi ajaib.
+
+source video explanation: https://www.youtube.com/watch?v=zPnN046OM34
