@@ -1,8 +1,0 @@
-x (cat) = 2 | y (cat) = 5 | z (mouse) = 4  ==> Cat B
-"karena y (cat) lebih duluan dari tikus, jadi dia yang duluan dapat.
-
-x (cat) = 4 | y (cat) = 4 | z (mouse) = 2  ==> Cat C
-"karena y (cat) dan x (cat) berkelahi, jadi tikus kabur.
-
-x (cat) = 5 | y (cat) = 1 | z (mouse) = 3 ==> Cat A
-"karena x (cat) lebih duluan dari tikus, jadi dia yang duluan dapat.
