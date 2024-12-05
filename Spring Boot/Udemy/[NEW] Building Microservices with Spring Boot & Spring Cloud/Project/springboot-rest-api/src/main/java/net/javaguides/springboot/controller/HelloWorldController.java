@@ -8,7 +8,7 @@ public class HelloWorldController {
 
     // HTTP Get Request
     // http://localhost:8081/hello
-    @GetMapping("/hello")
+    @GetMapping("hello")
     public String helloWord() {
         return "Hello World";
     }
