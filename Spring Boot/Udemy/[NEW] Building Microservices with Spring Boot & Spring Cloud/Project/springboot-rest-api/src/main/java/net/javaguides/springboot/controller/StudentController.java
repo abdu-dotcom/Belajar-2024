@@ -19,6 +19,7 @@ public class StudentController {
         return student;
     }
 
+    // http://localhost:8081/students
     @GetMapping("students")
     public List<Student> getStudents(){
         List<Student> students = new ArrayList<>();
