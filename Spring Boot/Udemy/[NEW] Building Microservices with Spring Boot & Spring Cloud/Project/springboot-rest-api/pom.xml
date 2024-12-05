@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.4</version>
+		<version>3.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.subrutin</groupId>
-	<artifactId>book-catalog-v2</artifactId>
+	<groupId>net.javaguides</groupId>
+	<artifactId>springboot-rest-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>book-catalog-v2</name>
-	<description>Simple catalog using spring boot</description>
+	<name>springboot-rest-api</name>
+	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
 		<license/>
