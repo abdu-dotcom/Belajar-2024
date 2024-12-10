@@ -42,4 +42,13 @@ public class UserController {
 
         return new ResponseEntity<>(users,HttpStatus.OK);
     }
+
+    // Build Update User REST API
+    // http://localhost:8080/api/users/1
+    public ResponseEntity<User> updateUser(@PathVariable("id") Long userId,
+                                           @RequestBody User user) {
+        user.setId(userId);
+        User updateUser = userService.updateUser(user);
+        return new ResponseEntity<>(updateUser, HttpStatus.OK);
+    }
 }
