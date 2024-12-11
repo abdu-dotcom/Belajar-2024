@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static net.javaguides.springboot.mapper.UserMapper.mapToUser;
 import static net.javaguides.springboot.mapper.UserMapper.mapToUserDto;
@@ -44,8 +45,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserDto> getAllUsers() {
+        List<User> user = userRepository.findAll();
+        return user.stream().map(UserMapper::mapToUserDto)
+                .collect(Collectors.toList());
     }
 
     @Override
