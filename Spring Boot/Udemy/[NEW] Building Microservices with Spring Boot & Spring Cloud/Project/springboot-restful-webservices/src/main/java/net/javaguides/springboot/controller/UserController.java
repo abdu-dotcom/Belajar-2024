@@ -1,6 +1,7 @@
 package net.javaguides.springboot.controller;
 
 import lombok.AllArgsConstructor;
+import net.javaguides.springboot.dto.UserDto;
 import net.javaguides.springboot.entity.User;
 import net.javaguides.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,9 @@ public class UserController {
 
     // build create User REST API
     @PostMapping()
-    public ResponseEntity<User> createUser(@RequestBody User user){
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto user){
 
-        User savedUser = userService.createUser(user);
+        UserDto savedUser = userService.createUser(user);
 
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
@@ -37,6 +38,7 @@ public class UserController {
 
     // Build Get All Users REST API
     // http://localhost:8080/api/users
+    @GetMapping()
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
 
