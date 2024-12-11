@@ -3,6 +3,7 @@ package net.javaguides.springboot.service.impl;
 import lombok.AllArgsConstructor;
 import net.javaguides.springboot.dto.UserDto;
 import net.javaguides.springboot.entity.User;
+import net.javaguides.springboot.mapper.UserMapper;
 import net.javaguides.springboot.repository.UserRepository;
 import net.javaguides.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(Long userId){
+    public UserDto getUserById(Long userId){
         Optional<User> optionalUser = userRepository.findById(userId);
-        return  optionalUser.get();
+
+        User user = optionalUser.get();
+        return UserMapper.mapToUserDto(user);
     }
 
     @Override
