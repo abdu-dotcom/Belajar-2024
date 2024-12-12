@@ -3,6 +3,7 @@ package net.javaguides.springboot.service.impl;
 import lombok.AllArgsConstructor;
 import net.javaguides.springboot.dto.UserDto;
 import net.javaguides.springboot.entity.User;
+import net.javaguides.springboot.exception.ResourceNotFoundException;
 import net.javaguides.springboot.mapper.AutoUserMapper;
 import net.javaguides.springboot.mapper.UserMapper;
 import net.javaguides.springboot.repository.UserRepository;
@@ -45,9 +46,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUserById(Long userId){
-        Optional<User> optionalUser = userRepository.findById(userId);
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User","Id",userId)
+        );
 
-        User user = optionalUser.get();
+        //        User user = optionalUser.get(); [Not used]
 
         //        return UserMapper.mapToUserDto(user); [Refaktor to modelMapper]
         //        return modelMapper.map(user,UserDto.class); [Refaktor to MapStruct]
@@ -64,7 +67,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto updateUser(UserDto user) {
 
-        User existingUser = userRepository.findById(user.getId()).get();
+        User existingUser = userRepository.findById(user.getId()).orElseThrow(
+                () -> new ResourceNotFoundException("User","id", user.getId())
+        );
+
         existingUser.setFirstname(user.getFirstName());
         existingUser.setLastname(user.getLastName());
         existingUser.setEmail(user.getEmail());
@@ -78,6 +84,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Void deleteUser(Long userId) {
+
+        User existingUser = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User","id", userId)
+        );
+
         userRepository.deleteById(userId);
         return null;
     }
