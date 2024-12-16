@@ -14,11 +14,11 @@ import lombok.Setter;
 public class UserDto {
 
     private Long id;
-    @NotEmpty // User first name should not be null or empty
+    @NotEmpty(message = "User first name should not be null or empty") // User first name should not be null or empty
     private String firstName;
-    @NotEmpty // User last name should not be null or empty
+    @NotEmpty(message = "User last name should not be null or empty") // User last name should not be null or empty
     private String lastName;
-    @NotEmpty // User email should not be null or empty
-    @Email    // User email valid format email
+    @NotEmpty(message = "User email should not be null or empty") // User email should not be null or empty
+    @Email(message = "Email format not valid!")    // User email valid format email
     private String email;
 }
