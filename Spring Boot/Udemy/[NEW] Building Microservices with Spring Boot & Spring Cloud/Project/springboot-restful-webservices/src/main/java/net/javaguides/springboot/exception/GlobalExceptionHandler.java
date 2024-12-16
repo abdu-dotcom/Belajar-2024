@@ -44,7 +44,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler  {
                 exception.getMessage(),
                 webRequest.getDescription(false),
                 "USER_EMAIL_ALREADY_EXISTS"
-        );
+         );
 
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
