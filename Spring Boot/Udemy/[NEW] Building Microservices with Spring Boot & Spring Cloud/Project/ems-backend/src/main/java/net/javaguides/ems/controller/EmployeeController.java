@@ -2,6 +2,7 @@ package net.javaguides.ems.controller;
 
 import lombok.AllArgsConstructor;
 import net.javaguides.ems.dto.EmployeeDto;
+import net.javaguides.ems.exception.ResourceNotFoundException;
 import net.javaguides.ems.services.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -45,5 +46,12 @@ public class EmployeeController {
     public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable("id") Long employeeId,@RequestBody EmployeeDto employeeDto){
         EmployeeDto employee = employeeService.updateEmployee(employeeId, employeeDto);
         return ResponseEntity.ok(employee);
+    }
+
+    @DeleteMapping("/employee/{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable("id") Long employeeId) throws ResourceNotFoundException {
+        employeeService.deleteEmployee(employeeId);
+
+        return ResponseEntity.ok("Employee deleted successfully!");
     }
 }
