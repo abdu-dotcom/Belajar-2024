@@ -5,10 +5,7 @@ import net.javaguides.department_service.dto.DepartmentDto;
 import net.javaguides.department_service.service.DepartmentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @RestController
@@ -24,4 +21,10 @@ public class DepartmentController {
         return new ResponseEntity<>(savedDepartment, HttpStatus.CREATED);
     }
 
+    // REST API: get a department
+    @GetMapping("/department/{department-code}")
+    public ResponseEntity<DepartmentDto> getDepartement(@PathVariable("department-code") String departmentCode){
+        DepartmentDto departmentDto = departmentService.getDepartmentByCode(departmentCode);
+        return new ResponseEntity<>(departmentDto,HttpStatus.OK);
+    };
 }
