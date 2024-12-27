@@ -24,6 +24,7 @@ public class EmployeeController {
     // REST API: get a employee
     @GetMapping("employee/{id}")
     public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable("id") Long employeeId){
+    System.out.println("employeeId : " +  employeeId);
         EmployeeDto employeeDto =employeeService.getEmployeeById(employeeId);
         return new ResponseEntity<>(employeeDto,HttpStatus.OK);
     }
