@@ -8,6 +8,7 @@ import net.javaguides.employeeservice.entity.Employee;
 import net.javaguides.employeeservice.exception.ResourceNotFoundException;
 import net.javaguides.employeeservice.mapper.EmployeeMapper;
 import net.javaguides.employeeservice.repository.EmployeeRepository;
+import net.javaguides.employeeservice.service.APIClient;
 import net.javaguides.employeeservice.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,15 +22,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
 
     // private RestTemplate restTemplate;
-    private WebClient webClient;
+    // private WebClient webClient;
+    private APIClient apiClient;
 
     @Override
     public EmployeeDto saveEmployee(EmployeeDto employeeDto) {
-
-    Employee employee = EmployeeMapper.INSTANCE.employeeDtoToEmployee(employeeDto);
-    Employee savedEmployee = employeeRepository.save(employee);
-
-    return EmployeeMapper.INSTANCE.employeeToEmployeeDto(savedEmployee);
+        Employee employee = EmployeeMapper.INSTANCE.employeeDtoToEmployee(employeeDto);
+        Employee savedEmployee = employeeRepository.save(employee);
+        return EmployeeMapper.INSTANCE.employeeToEmployeeDto(savedEmployee);
     }
 
     @Override
@@ -41,11 +41,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .orElseThrow(
                     () -> new ResourceNotFoundException("Department", "departmentCode", employeeId));
 
-        DepartmentDto departmentDto = webClient.get()
-                .uri("http://localhost:8080/api/departments/department/" +  employee.getDepartmentCode())
-                .retrieve()
-                .bodyToMono(DepartmentDto.class)
-                .block();
+        DepartmentDto departmentDto = apiClient.getDepartement(employee.getDepartmentCode());
 
         EmployeeDto employeeDto = EmployeeMapper.INSTANCE.employeeToEmployeeDto(employee);
 
