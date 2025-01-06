@@ -12,6 +12,7 @@ import net.javaguides.employeeservice.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
 @AllArgsConstructor
@@ -19,7 +20,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private EmployeeRepository employeeRepository;
 
-    private RestTemplate restTemplate;
+    // private RestTemplate restTemplate;
+    private WebClient webClient;
 
     @Override
     public EmployeeDto saveEmployee(EmployeeDto employeeDto) {
@@ -39,12 +41,13 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .orElseThrow(
                     () -> new ResourceNotFoundException("Department", "departmentCode", employeeId));
 
-        ResponseEntity<DepartmentDto> responseEntity = restTemplate.getForEntity("http://localhost:8080/api/departments/department/" + employee.getDepartmentCode(),
-                DepartmentDto.class);
+        DepartmentDto departmentDto = webClient.get()
+                .uri("http://localhost:8080/api/departments/department/" +  employee.getDepartmentCode())
+                .retrieve()
+                .bodyToMono(DepartmentDto.class)
+                .block();
 
         EmployeeDto employeeDto = EmployeeMapper.INSTANCE.employeeToEmployeeDto(employee);
-
-        DepartmentDto departmentDto = responseEntity.getBody();
 
         APIResponseDto apiResponseDto = new APIResponseDto();
         apiResponseDto.setEmployee(employeeDto);
