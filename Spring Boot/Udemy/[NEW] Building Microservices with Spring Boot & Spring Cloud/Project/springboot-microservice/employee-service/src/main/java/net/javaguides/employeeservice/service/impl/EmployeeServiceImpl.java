@@ -1,6 +1,7 @@
 package net.javaguides.employeeservice.service.impl;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.javaguides.employeeservice.dto.APIResponseDto;
 import net.javaguides.employeeservice.dto.DepartmentDto;
 import net.javaguides.employeeservice.dto.EmployeeDto;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
@@ -39,7 +41,14 @@ public class EmployeeServiceImpl implements EmployeeService {
             employeeRepository
                 .findById(employeeId)
                 .orElseThrow(
-                    () -> new ResourceNotFoundException("Department", "departmentCode", employeeId));
+                    () -> new ResourceNotFoundException("Employee", "employeeId", employeeId));
+
+        System.out.println("employee: " + employee.getId());
+        System.out.println("employee: " + employee.getFirstName());
+        System.out.println("employee: " + employee.getLastName());
+        System.out.println("employee: " + employee.getEmail());
+        System.out.println("employee" +
+                ": " + employee.getDepartmentCode());
 
         DepartmentDto departmentDto = apiClient.getDepartement(employee.getDepartmentCode());
 
